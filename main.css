@@ -6,6 +6,9 @@ body{
     min-height: 100vh;
     background-color: hsl(0 0% 20%);
 }
+.main_header{
+    margin-bottom: 2rem;
+}
 .main_header > h1{
     text-align: center;
     padding: 1rem;
@@ -19,36 +22,61 @@ body{
     width: 100%;
 }
 .data_header{
+    padding: .5rem;
     margin-bottom: 1rem;
 }
+.data_header > h2{
+    line-height: 2em;
+}
+.data_header > p{
+    line-height: 1.5em;
+}
 .general-data{
-    margin-bottom: 1rem;
     padding: 1rem;
 }
 .general-data > p{
-    margin-bottom: 1em;
+    line-height: 1.5em;
 }
 .number-data{
+    position: relative;
+    max-height: 50vh;
+    overflow-y: scroll;
     display: grid;
     grid-template-columns: repeat(5,1fr);
     grid-template-rows: 1fr 1fr;
     justify-content: space-evenly;
     gap: .5rem;
-    margin-bottom: .5rem;
+    margin-bottom: 2rem;
+    border-top: 30px solid hsl(0 0% 10%);
+    border-bottom: 20px solid hsl(0 0% 10%);
+}
+.number-data::before{
+    content: "";
+    position: absolute;
+    bottom: 0; left: 0;
+    background-color: red;
 }
 .number-data > div{
     text-align: center;
+    background-color: hsl(0 0% 30%);
+    padding: 5px;
+    border-radius: 5px;
 }
 .number-data > div > h3{
     font-size: .75rem;
-    margin-bottom: 1em;
+    background-color: hsl(0 0% 20%);
+    line-height: 2em;
 }
 .number-data > div > p{
     font-size: .75rem;
-    margin-bottom: .5em;
+    line-height: 1.6em;
+}
+.number-data > div > p:nth-child(3){
+    font-weight: 700;
 }
 .group-data{
     margin-bottom: 1rem;
+    margin-left: 1rem;
 }
 .group-data > h3{
     margin-bottom: 1em;
@@ -65,4 +93,10 @@ footer{
 }
 footer > *{
     margin-bottom: 1em;
+}
+
+@media only screen and (max-width: 200px) {
+    body{
+        background-color: red;
+    }
 }
