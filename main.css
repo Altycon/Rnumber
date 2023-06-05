@@ -9,8 +9,11 @@ body{
     background-color: hsl(0 0% 20%);
 }
 /*  === UTILITY CLASSES ===  */
-.highlight{
+.highlight1{
     background-color: red;
+}
+.highlight2{
+    background-color: blue;
 }
 /*  === TYPOGRAPHY ===  */
 .main_header{
@@ -32,6 +35,7 @@ body{
 .data_header{
     padding: .5rem;
     margin-bottom: 1rem;
+    text-align: center;
 }
 .data_header > h2{
     line-height: 2em;
@@ -41,6 +45,7 @@ body{
 }
 .general-data{
     padding: 1rem;
+    text-align: center;
 }
 .general-data > p{
     line-height: 1.5em;
@@ -52,18 +57,14 @@ body{
     grid-template-rows: auto 1fr;
     max-width: 500px;
     max-height: 50vh;
-    margin-bottom: 2rem;
+    margin: 0 auto 2rem auto;
+    /* margin-bottom: 2rem; */
     border: 20px solid hsl(0 0% 15%);
     border-bottom: 15px solid hsl(0 0% 10%);
     border-radius: 10px;
     overflow: hidden;
 }
-.number-data::before{
-    content: "";
-    position: absolute;
-    bottom: 0; left: 0;
-    background-color: red;
-}
+
 .number-data > h3{
     text-align: center;
     padding: 1em;
@@ -78,7 +79,7 @@ body{
     overflow-y: scroll;
     display: grid;
     grid-template-columns: repeat(5,1fr);
-    grid-template-rows: 1fr 1fr;
+    grid-template-rows: auto 1fr;
     justify-content: space-evenly;
     gap: .5rem;
 }
@@ -89,6 +90,9 @@ body{
     border-radius: 5px;
 }
 .numbers > div:hover{
+    outline: 2px solid hsl(120 100% 50% / 0.5);
+}
+.numbers > div:active{
     outline: 2px solid hsl(120 100% 50% / 0.5);
 }
 .numbers > div > h3{
@@ -105,20 +109,34 @@ body{
 }
 .group-data{
     margin-bottom: 1rem;
-    margin-left: 1rem;
 }
 .group-data > header{
     margin-bottom: 1rem;
 }
 .group-data > header > h3{
     margin-bottom: 1em;
+    text-align: center;
 }
-.group-search_form{
+.search-group_form{
+    position: relative;
     display: grid;
     grid-template-columns: 90vw;
     grid-template-rows: auto auto auto;
+    justify-content: center;
 }
-.group-search_form > *{
+/* .search-group_form::before{
+    content: "Not available";
+    position: absolute;
+    inset: 0;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 1rem;
+    color: hsl(0 0% 100%);
+    background-color: hsl(0 0% 0% / 0.8);
+    display: grid;
+    place-items: center;
+} */
+.search-group_form > *{
     margin-bottom: .5rem;
 }
 .search-group_label{
@@ -130,10 +148,15 @@ body{
 }
 .search-group_btn{
     padding: 5px 10px;
+    cursor: pointer;
+}
+.group{
+    text-align: center;
 }
 .group-data > p > span{
     font-family: monospace;
-    font-size: .33rem;
+    font-size: .35rem;
+    font-weight: 700;
 }
 footer{
     text-align: center;
@@ -144,10 +167,22 @@ footer > *{
 }
 
 @media only screen and (min-width: 500px) {
-    .group-search_form{
+    .search-group_form{
         grid-template-columns: 500px;
-        grid-template-rows: auto auto auto;
     }
+    .group-data > p > span{
+        font-size: .5rem;
+        line-height: 1.5em;
+    }
+}
+@media only screen and (min-width: 900px) {
+    .group-data > p > span{
+        font-size: .75rem;
+        line-height: 1.5em;
+    }
+}
+
+@media only screen and (min-width: 1000px) {
     .group-data > p > span{
         font-size: 1rem;
         line-height: 1.5em;

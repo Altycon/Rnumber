@@ -19,7 +19,6 @@
         <section>
             <header class="data_header">
                 <h2>Data</h2>
-                <p>I hope to graph this data soon...</p>
             </header>
             <article class="general-data">
                 <p>Number of groups: <span class="detected-groups">...</span></p>
@@ -35,17 +34,17 @@
             <article class="group-data">
                 <header>
                     <h3>Groups</h3>
-                    <form class="group-search_form">
+                    <form class="search-group_form">
                         <label for="SearchGroupInput" class="search-group_label">Search Number: </label>
                         <input 
                             type="text" 
                             inputmode="numeric" 
                             name="search" 
-                            pattern="[1-9]" 
+                            pattern="[0-9]+" 
                             id="SearchGroupInput" 
                             class="search-group_input"
                             autocomplete="off">
-                            <button type="button" class="search-group_btn">Search</button>
+                            <button type="submit" class="search-group_btn">Search</button>
                     </form>
                 </header>
                 

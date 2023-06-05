@@ -8,6 +8,11 @@ const DATA_DISPLAY = {
     CONTAINERS: {
         NUMBER_DATA: document.querySelector('.numbers'),
         GROUP_DATA: document.querySelector('.group-data')
+    },
+    SEARCH: {
+        FORM: document.querySelector('.search-group_form'),
+        INPUT: document.querySelector('.search-group_form'),
+        SUBMIT_BTN: document.querySelector('.search-group_form'),
     }
 }
 function getNumberPlaces(num){
@@ -28,8 +33,8 @@ function selectNumbersInGroup({currentTarget}){
     // clear highlighted digits
     groups.forEach( group => {
         [...group.children].forEach( digit => {
-            if(digit.classList.contains('highlight')){
-                digit.classList.remove('highlight');
+            if(digit.classList.contains('highlight1')){
+                digit.classList.remove('highlight1');
             }
         })
     })
@@ -40,7 +45,7 @@ function selectNumbersInGroup({currentTarget}){
         const group = groups[row].querySelectorAll('.digit');
 
         for(let i = 0; i < numberLength; i++){
-            group[col + i].classList.add('highlight');
+            group[col + i].classList.add('highlight1');
         }
     });
     
@@ -52,6 +57,7 @@ function addDigitData(numbers){
         //if(numbers[num].total > 300){
             const div = document.createElement('div');
             div.dataset.number = num;
+            div.setAttribute('tabindex', 0);
             const h3 = document.createElement('h3');
             h3.innerText = `${num}`
             const p1 = document.createElement('p');
@@ -71,7 +77,6 @@ function addDigitData(numbers){
     DATA_DISPLAY.CONTAINERS.NUMBER_DATA.appendChild(df);
 };
 function addGroupData(groups){
-    const parentWidth = +getComputedStyle(DATA_DISPLAY.CONTAINERS.GROUP_DATA).getPropertyValue('width').slice(0,-2);
 
     const df = new DocumentFragment();
     groups.forEach( (group,index) => {
@@ -79,13 +84,10 @@ function addGroupData(groups){
         p.setAttribute('class', 'group');
         p.dataset.group = `${index}`;
         const len = group.length;
-        const size = (parentWidth/len)*devicePixelRatio;
         for(let i = 0; i < len; i++){
             const span = document.createElement('span');
             span.setAttribute('class', 'digit');
             span.dataset.number = `${group[i]}`;
-            //span.setAttribute('width', size);
-            //span.style.border = `1px solid white`;
             span.innerText = group[i];
             p.appendChild(span);
         }
@@ -111,9 +113,47 @@ function addDataToPage(data){
     addGroupData(data.groups);
 };
 
+function searchForNumberInGroup(ev){
+    ev.preventDefault();
+    const searchQuery = ev.target.querySelector('.search-group_input').value;
+    const queryLength = searchQuery.length;
+    const groups = [...document.querySelectorAll('.group')];
+
+    groups.forEach( group => {
+        [...group.children].forEach( digit => {
+            if(digit.classList.contains('highlight2')){
+                digit.classList.remove('highlight2');
+            }
+        })
+    });
+
+    groups.forEach( group => {
+        const digits = [...group.children];
+        for(let i = 0; i < digits.length; i++){
+            const digit = digits[i];
+            const value = digit.dataset.number;
+            if(value !== searchQuery[0]) continue;
+
+            let countCheck = 0;
+            for(let j = 0; j < queryLength; j++){
+                const other = digits[i + j];
+                if(!other) continue;
+                if(other.dataset.number === searchQuery[j]) countCheck++;;
+            }
+            if(countCheck === queryLength){
+                for(let j = 0; j < queryLength; j++){
+                    digits[i + j].classList.add('highlight2');
+                }
+            }
+        }
+    });
+}
+
 function init(){
     
     addDataToPage(R_NUMBER_DATA);
+
+    DATA_DISPLAY.SEARCH.FORM.addEventListener('submit', searchForNumberInGroup)
 };
 
 init();
