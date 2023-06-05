@@ -27,10 +27,29 @@
                 <p>Numbers found: <span class="total-numbers">...</span></p>
             </article>
             <article class="number-data">
+                <h3>Appearance of numbers</h3>
+                <p>Touch numbers to display their position in the groups below.</p>
+                <div class="numbers"></div>
                <!-- data injected here -->
             </article>
             <article class="group-data">
-                <h3>Groups</h3>
+                <header>
+                    <h3>Groups</h3>
+                    <form class="group-search_form">
+                        <label for="SearchGroupInput" class="search-group_label">Search Number: </label>
+                        <input 
+                            type="text" 
+                            inputmode="numeric" 
+                            name="search" 
+                            pattern="[1-9]" 
+                            id="SearchGroupInput" 
+                            class="search-group_input"
+                            autocomplete="off">
+                            <button type="button" class="search-group_btn">Search</button>
+                    </form>
+                </header>
+                
+
                 <!-- data injected here -->
             </article>
         </section>
